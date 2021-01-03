@@ -4,7 +4,9 @@ from civo import Civo
 
 civo = Civo()
 
-ip_server = civo.instances.search(filter='hostname:{}'.format('csi-agrohealthhack'))[0]['public_ip']
+hostname_default = 'csi-agrohealthhack'
+
+ip_server = civo.instances.search(filter='hostname:{}'.format(hostname_default))[0]['public_ip']
 username = 'admin'
 
 c = Connection('{}@{}'.format(username, ip_server))
