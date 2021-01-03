@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Setup Python for use with Actions
-      uses: actions/setup-python@v1.0.0
+      uses: actions/setup-python@v3.9.0
     - name: Install client-python from Civo
       run: |
         pip3 install civo
