@@ -9,9 +9,9 @@ jobs:
   build:
     runs-on: ubuntu-latest   
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Setup Python for use with Actions
-      uses: actions/setup-python@v3.9.0
+      uses: actions/setup-python@v2
     - name: Install client-python from Civo
       run: |
         pip3 install civo
