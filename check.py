@@ -2,6 +2,8 @@ import time
 from fabric import Connection
 from civo import Civo
 
+civo = Civo()
+
 ip_server = civo.instances.search(filter='hostname:{}'.format('csi-agrohealthhack'))[0]['public_ip']
 username = 'admin'
 
