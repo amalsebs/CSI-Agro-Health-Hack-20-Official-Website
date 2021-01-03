@@ -1,0 +1,31 @@
+name: GitOps
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest   
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup Python for use with Actions
+      uses: actions/setup-python@v1.0.0
+    - name: Install client-python from Civo
+      run: |
+        pip3 install civo
+        pip3 install fabric
+    - name: Add ssh private key to the server
+      run: |
+        mkdir -p $HOME/.ssh/
+        chmod 700 $HOME/.ssh/
+        echo -n "${{ secrets.SSH_KEY_PRIVATE }}" | base64 --decode > $HOME/.ssh/id_rsa
+        chmod 600 $HOME/.ssh/id_rsa
+        stat $HOME/.ssh/id_rsa
+    - name: Compact webroot
+      run: tar -vczf webroot.gz webroot/
+    - name: Run check script
+      env:
+        CIVO_TOKEN: ${{ secrets.CIVO_TOKEN }}
+      run: python check.py
