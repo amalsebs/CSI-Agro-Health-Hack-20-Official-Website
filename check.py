@@ -6,7 +6,8 @@ civo = Civo()
 
 hostname_default = 'csi-agrohealthhack'
 
-ip_server = civo.instances.search(filter='hostname:{}'.format(hostname_default))[0]['public_ip']
+#ip_server = civo.instances.search(filter='hostname:{}'.format(hostname_default))[0]['public_ip']
+ip_server = 137.97.66.137
 username = 'admin'
 
 c = Connection('{}@{}'.format(username, ip_server))
